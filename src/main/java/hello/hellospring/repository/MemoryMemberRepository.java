@@ -1,11 +1,9 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.Member;
+import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class MemoryMemberRepository implements MemberRepository {
 
@@ -27,12 +25,12 @@ public class MemoryMemberRepository implements MemberRepository {
     @Override
     public Optional<Member> findByName(String name) {
         return store.values().stream().filter(member -> member.getName().equals(name))
-                .findAny()
+                .findAny();
     }
 
     @Override
     public List<Member> findAll() {
-        return null;
+        return new ArrayList<>(store.values());
     }
 
     public void clearStore() {
